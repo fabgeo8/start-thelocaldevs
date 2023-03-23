@@ -5,7 +5,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 module.exports = {
   data: function () {
     return {
@@ -15,7 +15,6 @@ module.exports = {
   methods: {
     fetchSuggestions() {
         console.log("fetch");
-        
     }
   },
   mounted() {

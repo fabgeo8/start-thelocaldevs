@@ -1,20 +1,21 @@
 <template>
-<div>
-  <input
-    v-model="inputValue"
-    @keyup="fetchSuggestions"
-    type="search"
-    name="Search"
-    placeholder="Search..."
-    class="w-32 py-2 pl-10 text-sm rounded-md sm:w-auto focus:outline-none bg-gray-100 text-gray-800 focus:bg-gray-50"
-  />
-    <div v-show="suggestions.length > 0 && inputValue !== ''" class="suggestions w-32 py-2 pl-10 text-sm rounded-md">
-        <div v-for="(s,i)  in suggestions" :key="i" class="single-suggestion">
-            {{s.hit.name}}
-        </div>
-    </div>
-</div>
+  <div>
+    <input
+      v-model="inputValue"
+      @keyup="fetchSuggestions"
+      type="search"
+      name="Search"
+      placeholder="Search..."
+      class="w-32 py-2 pl-10 text-sm rounded-md sm:w-auto focus:outline-none bg-gray-100 text-gray-800 focus:bg-gray-50"
+    />
+      <div v-show="suggestions.length > 0 && inputValue !== ''" class="suggestions w-32 py-2 pl-10 text-sm rounded-md">
+          <div v-for="(s,i)  in suggestions" :key="i" class="single-suggestion">
+              {{s.hit.name}}
+          </div>
+      </div>
+  </div>
 </template>
+
 <style lang="postcss" scoped>
     .suggestions {
         background: grey;
@@ -25,7 +26,7 @@
         overflow: scroll;
     }
 </style>
-<script lang="ts">
+<script>
 module.exports = {
   data: function () {
     return {
@@ -52,8 +53,8 @@ module.exports = {
         .then((data) => {
             this.suggestions = data.data.searchInstruments.filter(el => el.hit.instrumentType == "EQUITY");
             console.log(data.data);
-            
-        }); 
+
+        });
     },
   },
   mounted() {},
