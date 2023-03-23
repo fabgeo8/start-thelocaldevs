@@ -1,9 +1,9 @@
 <template>
   <div
-    class="single-card-wrapper shadow-sm grid grid-cols-3 p-2 rounded-lg text-gray-800"
+    class="single-card-wrapper shadow-sm grid grid-cols-3 p-3 rounded-lg text-gray-800"
   >
     <div class="flex flex-col col-span-2 justify-center align-middle basis-9/12">
-      <p class="text-3xl font-semibold leading-none">{{title}}</p>
+      <p class="text-xl pl-3 font-semibold leading-none">{{title}}</p>
     </div>
     <div class="col-span-1 m-auto">
         <div
@@ -41,8 +41,8 @@ export default {
 }
 
 .arrow_up {
-  width: 65px;
-  height: 65px;
+  width: 45px;
+  height: 45px;
   -webkit-mask-image: url("~/assets/arrow.svg");
   mask-image: url("~/assets/arrow.svg");
   -webkit-mask-repeat: no-repeat;
