@@ -23,7 +23,7 @@
       type="search"
       name="Search"
       placeholder="Search..."
-      class="w-32 py-2 pl-10 text-sm rounded-md sm:w-auto focus:outline-none bg-gray-100 text-gray-800 focus:bg-gray-50"
+      class="w-32 py-2 pl-10 text-sm rounded-md sm:w-auto focus:outline-none bg-gray-70 text-gray-800 focus:bg-gray-50"
     />
     <div
       v-show="suggestions.length > 0 && inputValue !== ''"

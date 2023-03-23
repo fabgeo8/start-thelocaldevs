@@ -1,10 +1,22 @@
 <template>
   <div>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css" rel="stylesheet">
-    <!-- <Header @closeDetail="toggleView" /> -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
     <transition-group mode="in-out">
-      <Arrow v-show="!detailView" :key="1" :stocks=stocks @shareSelected="toggleView" />
-      <DetailView v-show="detailView" :key="2" :stocks=stocks @closeDetail="toggleView" />
+      <Arrow
+        v-show="!detailView"
+        :key="1"
+        :stocks="stocks"
+        @shareSelected="toggleView"
+      />
+      <DetailView
+        v-show="detailView"
+        :key="2"
+        :stocks="stocks"
+        @closeDetail="toggleView"
+      />
     </transition-group>
   </div>
 </template>
@@ -41,7 +53,28 @@ module.exports = {
   data: function () {
     return {
       detailView: false,
-      tickers: ["NFLX_67", "TSLA_67", "AAPL_67", "ABNB_67", "AMZN_67", "SCMN_4","SREN_4","HOLNE_4","CSGN_4","ROG_4","LOGN_4","NESN_4"],
+      tickers: [
+        "NFLX_67",
+        "TSLA_67",
+        "AAPL_67",
+        "ABNB_67",
+        "AMZN_67",
+        "SCMN_4",
+        "SREN_4",
+        "HOLNE_4",
+        "CSGN_4",
+        "ROG_4",
+        "LOGN_4",
+        "NESN_4",
+        "MSFT_4",
+        "LONN_4",
+        "NVDA_67",
+        "AMD_67",
+        "ADBE_67",
+        "CSCO_67",
+        "INTC_67",
+        "SBUX_67"
+      ],
       stocks: [],
     };
   },
