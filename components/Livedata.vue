@@ -29,12 +29,14 @@ import * as stream from "stream";
 const WS_URL = 'wss://web.api.six-group.com/api/findata/v1/websocket'
 export default {
   name: 'Livedata',
+  props: {
+    ticker: String
+  },
   data: () => ({
     websocketState: '',
     connection: null,
     messages: [],
     tickerValue: null,
-    ticker: 'NFLX_67',
     textColor: 'text-black-400',
     streamCounter: -1
   }),
@@ -79,7 +81,7 @@ export default {
 
     sendMessage: function() {
       this.streamCounter += 1
-      const query = `subscription { startStream(streamId: "stream_${crypto.randomUUID()}" scheme: TICKER_BC ids: ["${this.ticker}"]) {
+      const query = `subscription { startStream(streamId: "stream_${crypto.randomUUID()}" scheme: TICKER_BC ids: ["${ticker}"]) {
         type requestedId requestedScheme qualityOfService
         last { value timestamp size }
         high { value timestamp }
