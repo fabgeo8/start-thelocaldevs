@@ -1,11 +1,24 @@
 <template>
-  <Tutorial/>
+  <div>
+    <Header />
+    <Sidebar />
+  </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-
-export default Vue.extend({
-  name: 'IndexPage'
-})
+module.exports = {
+  data: function () {
+    return {
+      greeting: "Hello",
+    };
+  },
+  methods: {
+    fetchSuggestions() {
+        console.log("fetch");
+        
+    }
+  },
+  mounted() {
+  }
+};
 </script>
