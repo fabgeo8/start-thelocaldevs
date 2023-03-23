@@ -7,7 +7,7 @@
     </div>
     <div class="col-span-1 m-auto">
         <div
-        :style="{ background: color, transform: `rotate(${rotation}deg)` }"
+        :style="{ background: trend < 0 ? '#9FDC95' : '#F7BBB6', transform: `rotate(${trend}deg)` }"
         class="arrow_up  justify-center align-middle basis-3/12"
         ></div>
     </div>
@@ -16,10 +16,22 @@
 <script>
 export default {
   props: {
-    color: String,
-    rotation: String,
+    trendWeek: Number,
+    trendYTD: Number,
+    timePeriod: Boolean,
     title: String
   },
+  computed: {
+    trend() {
+        let num = this.timePeriod ? this.trendYTD : this.trendWeek
+        return ((num - -100) * (-90 - 90)) / (100 - -100) + 90;
+    }
+  },
+  methods: {
+    mapToRotation(num) {
+      
+    },
+  }
 };
 </script>
 <style>
@@ -36,5 +48,6 @@ export default {
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
   background: green;
+  transition: all 0.5s ease-in-out;
 }
 </style>

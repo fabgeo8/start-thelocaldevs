@@ -130,9 +130,16 @@ module.exports = {
         listings.forEach((listing) => {
           console.log(listing);
           let ytdTrend = null;
+          let sevenDayTrend = null;
           try {
             ytdTrend =
               (100 / listing.marketData.eodTimeseries[0].close) *
+                listing.marketData.eodTimeseries[
+                  listing.marketData.eodTimeseries.length - 1
+                ].open -
+              100;
+            sevenDayTrend =
+              (100 / listing.marketData.eodTimeseries[listing.marketData.eodTimeseries.length-8].close) *
                 listing.marketData.eodTimeseries[
                   listing.marketData.eodTimeseries.length - 1
                 ].open -
@@ -144,7 +151,7 @@ module.exports = {
           result.push({
             name: listing.lookup.listingName,
             trendYTD: ytdTrend,
-            trend7: 0,
+            trend7: sevenDayTrend,
           });
         });
         console.log(result);
@@ -164,19 +171,6 @@ body {
   margin: 0;
   background: white;
 }
-/* .slide-fade-enter-active {
-  transition: all 0.3s ease-out;
-}
-
-.slide-fade-leave-active {
-  transition: none;
-}
-
-.slide-fade-enter-from,
-.slide-fade-leave-to {
-  transform: translateX(20px);
-  opacity: 0;
-} */
 .v-enter-active {
   transition: all 0.5s ease;
 }

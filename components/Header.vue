@@ -76,8 +76,7 @@ module.exports = {
 </script>
 <style>
 .logo {
-    width: 72px;
-    width: 72px;
+    width: 200px;
 }
 </style>
 
