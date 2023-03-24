@@ -36,6 +36,7 @@ export default {
 </script>
 <style>
 .single-card-wrapper {
+    cursor: pointer; 
     background: #eae8e8;
     border: 1px solid #c9c9c9;
 }
@@ -47,7 +48,6 @@ export default {
   mask-image: url("~/assets/arrow.svg");
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
-  background: green;
   transition: all 0.5s ease-in-out;
 }
 </style>

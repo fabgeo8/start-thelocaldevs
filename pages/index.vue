@@ -9,6 +9,7 @@
         v-show="!detailView"
         :key="1"
         :stocks="stocks"
+        :errorMessage="errorMessage"
         @shareSelected="toggleView"
       />
       <DetailView
@@ -73,9 +74,10 @@ module.exports = {
         "ADBE_67",
         "CSCO_67",
         "INTC_67",
-        "SBUX_67"
+        "SBUX_67",
       ],
       stocks: [],
+      errorMessage: "",
     };
   },
   methods: {
@@ -121,42 +123,52 @@ module.exports = {
         }
       }`;
 
-      loadData(graphQLQuery, apiVersion, url).then((res) => {
-        console.log("data loaded", res);
-        let listings = res.data?.listings;
-
-        let result = [];
-
-        listings.forEach((listing) => {
-          console.log(listing);
-          let ytdTrend = null;
-          let sevenDayTrend = null;
-          try {
-            ytdTrend =
-              (100 / listing.marketData.eodTimeseries[0].close) *
-                listing.marketData.eodTimeseries[
-                  listing.marketData.eodTimeseries.length - 1
-                ].open -
-              100;
-            sevenDayTrend =
-              (100 / listing.marketData.eodTimeseries[listing.marketData.eodTimeseries.length-8].close) *
-                listing.marketData.eodTimeseries[
-                  listing.marketData.eodTimeseries.length - 1
-                ].open -
-              100;
-          } catch (err) {
-            console.log("YTD Trend not calculated", err);
+      loadData(graphQLQuery, apiVersion, url)
+        .then((res) => {
+          console.log("data loaded", res);
+          if(!res?.data) {
+            console.log('Error');
+            console.log(res.message);
+            this.errorMessage = res.message;
+            return;
           }
+          let listings = res.data?.listings;
 
-          result.push({
-            name: listing.lookup.listingName,
-            trendYTD: ytdTrend,
-            trend7: sevenDayTrend,
+          let result = [];
+
+          listings.forEach((listing) => {
+            console.log(listing);
+            let ytdTrend = null;
+            let sevenDayTrend = null;
+            try {
+              ytdTrend =
+                (100 / listing.marketData.eodTimeseries[0].close) *
+                  listing.marketData.eodTimeseries[
+                    listing.marketData.eodTimeseries.length - 1
+                  ].open -
+                100;
+              sevenDayTrend =
+                (100 /
+                  listing.marketData.eodTimeseries[
+                    listing.marketData.eodTimeseries.length - 8
+                  ].close) *
+                  listing.marketData.eodTimeseries[
+                    listing.marketData.eodTimeseries.length - 1
+                  ].open -
+                100;
+            } catch (err) {
+              console.log("YTD Trend not calculated", err);
+            }
+
+            result.push({
+              name: listing.lookup.listingName,
+              trendYTD: ytdTrend,
+              trend7: sevenDayTrend,
+            });
           });
-        });
-        console.log(result);
-        this.stocks = result;
-      });
+          console.log(result);
+          this.stocks = result;
+        })
     },
   },
   mounted() {

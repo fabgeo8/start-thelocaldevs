@@ -5,10 +5,19 @@
       <div class="switch-container flex justify-center items-center p-2 my-3">
         <span class="mx-2">Trend Year</span>
         <label class="switch">
-          <input type="checkbox" @click="toggleCheckbox">
+          <input type="checkbox" @click="toggleCheckbox" />
           <div class="slider round"></div>
         </label>
         <span class="mx-2">Trend Week</span>
+      </div>
+      <div v-if="errorMessage !== ''" class="error flex justify-center">
+        <div
+          class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative w-full sm:w-1/2"
+          role="alert"
+        >
+          <strong class="font-bold">An error occured:</strong>
+          <span class="block sm:inline">{{ errorMessage }}</span>
+        </div>
       </div>
       <div
         class="container grid grid-cols-1 gap-6 mx-auto sm:grid-cols-3 xl:grid-cols-4"
@@ -20,7 +29,7 @@
           :title="stock.name"
           :trendYTD="stock.trendYTD"
           :trendWeek="stock.trend7"
-          :timePeriod=timePeriod
+          :timePeriod="timePeriod"
         />
       </div>
     </section>
@@ -30,6 +39,7 @@
 module.exports = {
   props: {
     stocks: Array,
+    errorMessage: String
   },
   data: () => {
     return {
@@ -38,9 +48,9 @@ module.exports = {
   },
   methods: {
     toggleCheckbox() {
-      this.timePeriod = !this.timePeriod
-      this.$emit('setCheckboxVal', this.timePeriod)
-    }
+      this.timePeriod = !this.timePeriod;
+      this.$emit("setCheckboxVal", this.timePeriod);
+    },
   },
 };
 </script>

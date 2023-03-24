@@ -1,7 +1,7 @@
 <template>
   <header class="p-4 bg-gray-100 text-gray-800">
     <div class="container flex justify-between h-16 mx-auto">
-      <ul class="items-stretch hidden space-x-3 lg:flex">
+      <!-- <ul class="items-stretch hidden space-x-3 lg:flex">
         <li class="flex">
           <a
             rel="noopener noreferrer"
@@ -26,7 +26,7 @@
             >Stocks</a
           >
         </li>
-      </ul>
+      </ul> -->
       <a
         rel="noopener noreferrer"
         href="#"
