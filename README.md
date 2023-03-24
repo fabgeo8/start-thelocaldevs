@@ -1,5 +1,7 @@
 # start-thelocaldevs
 
+## Pitch
+The slidedeck for the pitch can be found in the folder [slides](slides/)
 ## Build Setup
 
 ```bash
